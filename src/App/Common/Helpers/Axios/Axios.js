@@ -1,19 +1,18 @@
-import { createApp } from "vue";
 import Axios from "axios";
 import store from "../../../../store";
 import swal from "sweetalert";
+import {createApp} from "vue";
 
-const app = createApp({})
-
-app.prototype.$axios = Axios.create({
+let $axios = Axios.create({
   baseURL: process.env.VUE_APP_API_ROOT
 });
 
+
 // Add a request interceptor
-app.prototype.$axios.interceptors.request.use(
+$axios.interceptors.request.use(
   function(config) {
     // Do something before request is sent
-    config.headers.authorization = 'Bearer ' + store.state.trademogul_web_token;
+    config.headers.authorization = 'Bearer ' + store.state.solutech_web_token;
     return config;
   },
   function(error) {
@@ -24,7 +23,7 @@ app.prototype.$axios.interceptors.request.use(
 );
 
 // Add a response interceptor
-app.prototype.$axios.interceptors.response.use(
+$axios.interceptors.response.use(
   function(response) {
     // Do something with response data
     return response;
@@ -59,3 +58,9 @@ app.prototype.$axios.interceptors.response.use(
     return Promise.reject(error);
   }
 );
+
+export default {
+  install: function(app) {
+    app.config.globalProperties.$axios = $axios
+  }
+}

@@ -1,7 +1,7 @@
 <template>
   <div>
     <auth-layout>
-      <template slot="content">
+      <template v-slot:content>
         <div>
           <!-- Page content -->
           <div class="container mt--8 pb-5">
@@ -165,12 +165,7 @@ export default {
     login() {
       this.loading = true;
       this.formError = []
-      this.$axios({
-        baseURL: process.env.VUE_APP_AUTH_API_ROOT,
-        url: '/admin/login',
-        method: 'post',
-        data: this.loginData
-      })
+      this.$axios.post('/authentication/login', this.loginData)
           .then(response => {
             this.loading = false;
             let token = response.data.access_token;

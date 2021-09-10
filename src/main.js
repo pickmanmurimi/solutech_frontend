@@ -5,17 +5,17 @@ import router from './router'
 import store from './store'
 
 // libs
-// import VuePageTransition from 'vue-page-transition'
-
 
 //internals
-// require("./App/Common/Helpers/Axios/Axios");
+import axios from "./App/Common/Helpers/Axios/Axios";
 
+import Authentication from "@/App/Common/Mixins/Authentication";
 import { default as Helpers } from "./App/Common/Helpers";
-import { default as swalPlugin } from './App/Common/Helpers/Plugins/swal'
 
 createApp(App)
     .use(store)
     .use(router)
-    // .use(VuePageTransition)
+    .use(axios)
+    .use(Helpers)
+    .mixin(Authentication)
     .mount('#app')
