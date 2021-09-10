@@ -1,5 +1,11 @@
 # solutech_frontend
 
+### Set up the .env
+
+Copy the `.env.example file` and rename it to `.env`.
+
+Finally, change the value of the `VUE_APP_API_ROOT` to reflect your api host url.
+
 ## Project setup
 ```
 yarn install
