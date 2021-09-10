@@ -1,0 +1,1 @@
+export { default as _view } from "./_view"
