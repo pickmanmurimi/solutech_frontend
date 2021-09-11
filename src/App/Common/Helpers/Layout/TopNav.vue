@@ -3,7 +3,7 @@
 
     <div class="container-fluid">
       <!-- Brand -->
-      <a class="h4 mb-0 text-white text-uppercase d-none d-lg-inline-block" href="#"> {{ this.$route.name }} </a>
+      <a class="h4 mb-0 text-white text-uppercase d-none d-lg-inline-block" href="#"> {{ this.$route.meta.title }} </a>
 
       <!-- User -->
       <ul class="navbar-nav align-items-center d-none d-md-flex">
@@ -19,7 +19,7 @@
               </div>
             </div>
           </a>
-          <div v-show="showDropDown" v-click-away="closeDropdown"
+          <div v-if="showDropDown" v-click-away="closeDropdown"
                :class="'dropdown-menu dropdown-menu-arrow dropdown-menu-right' + showClass">
             <div class=" dropdown-header noti-title">
               <h6 class="text-overflow m-0">Welcome!</h6>

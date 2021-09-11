@@ -22,7 +22,7 @@ let Authentication = {
         setUserDetails(redirect = true) {
             this.authentication_loader = true
             // user/me
-            this.$axios.get('admin-user/me')
+            this.$axios.get('user/me')
                 .then(response => {
                     let user = response.data.data;
 
@@ -34,12 +34,10 @@ let Authentication = {
                         if (redirect)
                             this.$router.push({name: 'Home'});
                     }
-
                 })
                 .catch(error => {
                     this.authentication_loader = false
                     this.logout()
-                    console.log(error)
                 })
         },
 
@@ -47,20 +45,17 @@ let Authentication = {
          * logout
          */
         logout: function () {
-            this.authentication_loader = true;
-            this.$axios({
-                baseURL: process.env.VUE_APP_AUTH_API_ROOT,
-                url: '/admin/logout',
-                method: 'post',
-                data: this.loginData
-            }).then(() => {
-                this.authentication_loader = false;
-                this.$store.dispatch('logout').then();
-            }).catch(err => {
-                this.authentication_loader = false;
-                this.$store.dispatch('logout').then();
-                console.log(err)
-            })
+            this.$loading.show();
+            this.$axios.post('/authentication/logout')
+                .then(() => {
+                    this.$loading.hide();
+                    this.$store.dispatch('logout').then();
+                })
+                .catch(err => {
+                    this.$loading.hide();
+                    this.$store.dispatch('logout').then();
+                    console.log(err)
+                })
         },
     },
 

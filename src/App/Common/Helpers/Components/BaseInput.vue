@@ -6,7 +6,7 @@
              :disabled="disabled" :name="name"
              :placeholder="placeholder ? placeholder : text "
              :type="type"
-             :value="value" class="form-control font-weight-bold form-control-alternative" @input="handleInput">
+             :value="modelValue" class="form-control font-weight-bold form-control-alternative" @input="handleInput">
       <small v-if="formError[ name ]" class="form-text text-danger"> {{ formError[name][0] }} </small>
       <small v-if="helper" class="form-text text-muted"> {{ helper }} </small>
     </div>
@@ -49,7 +49,7 @@ export default {
     helper: {
       type: String
     },
-    value: {
+    modelValue: {
       required: true
     },
     formError: {
@@ -83,7 +83,7 @@ export default {
      * handleInput
      */
     handleInput(e) {
-      this.$emit('input', e.target.value)
+      this.$emit('update:modelValue', e.target.value)
     }
   }
 }

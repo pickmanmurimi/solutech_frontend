@@ -5,7 +5,7 @@
       <!--      Routes with children -->
       <!--------------------------------------------------------------------------------------------------------------->
       <template v-if="route.children && route.meta.onmenu">
-        <li class="nav-item">
+        <li class="nav-item mb-3">
           <a :aria-expanded="( currentParent === route.name ) ? 'true' : 'false'"
              :href="'#' + route.name"
              aria-controls="navbar-components" class="nav-link parent" data-toggle="collapse"
@@ -20,8 +20,8 @@
               <li v-for=" child in route.children " :key="child.id" class="nav-item">
                 <router-link v-if="child.meta.onmenu"
                              :to="{ name: child.name}"
-                             class="nav-link">
-                  <span class="sidenav-mini-icon"></span>
+                             class="nav-link nav-link-mini">
+                  <i :class="child.meta.icon" class=""></i>
                   <span class="sidenav-normal"> {{ child.meta.title ? child.meta.title : child.name }} </span>
                 </router-link>
               </li>
@@ -35,7 +35,7 @@
       <!--      Routes with no children -->
       <!--------------------------------------------------------------------------------------------------------------->
       <template v-else>
-        <li class="nav-item">
+        <li class="nav-item mb-3">
           <router-link v-if="route.meta.onmenu" :to="{ name: route.name}" class="nav-link text-capitalize">
             <i :class="route.meta.icon" class="text-primary "></i>
             {{ route.name }}
@@ -120,5 +120,9 @@ export default {
   border-left: 4px solid #324cdd;
   padding-left: 1rem;
 
+}
+
+.nav-link-mini {
+  padding-left: 2.75rem !important;
 }
 </style>

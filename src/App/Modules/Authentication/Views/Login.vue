@@ -3,26 +3,22 @@
     <auth-layout>
       <template v-slot:content>
         <div>
+
           <!-- Page content -->
-          <div class="container mt--8 pb-5">
+          <div class="container mt-0 mt-md-8 pb-5">
             <div class="row justify-content-center">
-              <div class="col-lg-5 col-md-7">
-                <div class="card bg-secondary shadow border-0">
-                  <div class="card-header bg-transparent pb-5">
-                    <div class="text-muted text-center mt-2 mb-3">
-                      <small>Sign in</small>
-                    </div>
-                    <div class="btn-wrapper text-center">
-                      <router-link :to="{ name: 'Login'}" class="btn btn-neutral btn-icon">
-                                            <span class="btn-inner--icon"><img
-                                                src="/img/icons/logo.png"></span>
-                        <span class="btn-inner--text">Trade Mogul</span>
-                      </router-link>
-                    </div>
-                  </div>
+              <div class="col-12 col-xl-8">
+                <div class="card bg-white mt-6 mt-md-8 border-0">
                   <div class="card-body px-lg-5 py-lg-5">
-                    <div class="text-center text-muted mb-4">
-                      <small>sign in with credentials</small>
+
+                    <div class="navbar-brand d-block d-md-none mt--5 mb-5 text-center">
+                      <span class="d-block font-weight-bold mb-2"> Trade Mogul</span>
+
+                      <img height="100" src="/img/icons/logo.png">
+                    </div>
+
+                    <div class=" text-muted mb-4">
+                      <p>sign in with credentials</p>
                     </div>
 
                     <!------------------------------------------------------------------------------------------------->
@@ -34,7 +30,7 @@
                       <!-- email -->
                       <!----------------------------------------------------------------------------------------------->
 
-                      <div class="form-group mb-3">
+                      <div class="form-group mb-5">
                         <div class="input-group input-group-alternative">
 
                           <!-- icon-->
@@ -94,22 +90,24 @@
                       <!-- sign in -->
                       <!----------------------------------------------------------------------------------------------->
 
-                      <div class="text-center">
+                      <div class="text">
                         <button :disabled="loading || authentication_loader" type="button" @click="login()" class="btn btn-primary my-4">Sign
                           in
                         </button>
                       </div>
 
-                    </div>
-                  </div>
-                </div>
+                      <!----------------------------------------------------------------------------------------------------->
+                      <!-- Forgot Password -->
+                      <!----------------------------------------------------------------------------------------------------->
+                      <div class="row mt-3">
+                        <div class="col-12">
+                          <br>
+<!--                          <router-link :to="{name : 'ForgotPassword'}" class="text-primary">-->
+<!--                            <small>Forgot password?</small></router-link>-->
+                        </div>
+                      </div>
 
-                <!----------------------------------------------------------------------------------------------------->
-                <!-- Forgot Password -->
-                <!----------------------------------------------------------------------------------------------------->
-                <div class="row mt-3">
-                  <div class="col-6">
-                    <!-- <a href="#" class="text-light"><small>Forgot password?</small></a> -->
+                    </div>
                   </div>
                 </div>
 

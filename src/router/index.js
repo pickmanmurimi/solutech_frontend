@@ -1,44 +1,47 @@
-import { createRouter, createWebHashHistory } from 'vue-router'
+import {createRouter, createWebHashHistory} from 'vue-router'
 import store from "../store";
-import { routes } from "../App/index";
+import {routes} from "../App/index";
 
 const router = createRouter({
-  history: createWebHashHistory(),
-  routes
+    history: createWebHashHistory(),
+    routes
 })
 
 router.beforeEach((to, from, next) => {
-  if (to.matched.some(record => record.meta.requiresAuth)) {
-    //for a route that requires auth
-    //check if they are authenticated
-    if (store.getters.isAuthenticated) {
-      // check role level
-      //check if user is admin
-      //check if user is authorized
-      if ( to.meta.permission !== '*' && ! ( store.getters.user.permissions.indexOf( to.meta.permission ) >= 0 ))
-      {
-        return swal('You are not authorized to view this resource', '', 'error')
-      }
+    if (to.matched.some(record => record.meta.requiresAuth)) {
+        /**
+         *  for a route that requires auth
+         *  check if they are authenticated
+         */
+        if (store.getters.isAuthenticated) {
+            /**
+             *  check role level
+             *  check if user is admin
+             *  check if user is authorized
+             */
+            // if ( to.meta.permission !== '*' && ! ( store.getters.user.permissions.indexOf( to.meta.permission ) >= 0 ))
+            // {
+            //   return swal('You are not authorized to view this resource', '', 'error')
+            // }
+            next()
+        } else {
+            next({name: "Login"})
+        }
     } else {
-      router.push({ name: "Login" }).catch(err => {
-        console.log(err);
-      });
-      return true;
+        //check if they are authenticated
+        if (store.getters.isAuthenticated) {
+            /**
+             *  do not access strict non auth routes if authenticated
+             *  prevents users from going back to: login page, forgot password, register
+             */
+            if (to.matched.some(record => record.meta.strictNoAuth)) {
+                next({name: "Home"});
+            }
+        } else {
+            //if requires no auth
+            next();
+        }
     }
-  } else {
-    //check if they are authenticated
-    if (store.getters.isAuthenticated) {
-      //do not access strict non auth routes if authenticated
-      //prevents users from going back to: login page, forgot password, register
-      if (to.matched.some(record => record.meta.strictNoAuth)) {
-        router.push({ name: "Home" }).then();
-        return true;
-      }
-    }
-  }
-
-  //if requires no auth
-  next();
 });
 
 export default router

@@ -158,7 +158,7 @@ export default {
    * created
    */
   created() {
-    this.getStats();
+    // this.getStats();
   },
 
   /**

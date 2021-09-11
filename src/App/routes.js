@@ -1,9 +1,9 @@
 import AuthenticationRoutes from "./Modules/Authentication/Router"
 import HomeRoutes from "./Modules/Home/Router"
-import AuthorizationRoutes from "./Modules/Authorization/Router"
+import VehiclesRoutes from "./Modules/Vehicles/Router"
 
 export default [
     ...AuthenticationRoutes,
     ...HomeRoutes,
-    ...AuthorizationRoutes,
+    ...VehiclesRoutes,
 ]

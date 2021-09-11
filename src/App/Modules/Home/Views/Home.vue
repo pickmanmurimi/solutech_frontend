@@ -1,19 +1,19 @@
 <template>
   <main-layout>
 
-    <template slot="header-body">
+    <template v-slot:header-body>
       <stats-header></stats-header>
     </template>
 
 
-    <template slot="content">
+    <template v-slot:content>
 
           <card>
-            <template slot="header">
+            <template v-slot:header>
                 <DashboardCardHeader></DashboardCardHeader>
             </template>
 
-            <template slot="body">
+            <template v-slot:body>
               <p class="mt-3 mb-0 text-muted text-sm">
                 Dashboard Control
               </p>
@@ -33,6 +33,7 @@ export default {
    * name
    */
   name: "Home",
+
 
   /**
    * components

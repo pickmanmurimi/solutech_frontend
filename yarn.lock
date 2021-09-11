@@ -5092,7 +5092,7 @@ js-queue@2.0.2:
   dependencies:
     easy-stack "^1.0.1"
 
-"js-tokens@^3.0.0 || ^4.0.0", js-tokens@^4.0.0:
+js-tokens@^4.0.0:
   version "4.0.0"
   resolved "https://registry.yarnpkg.com/js-tokens/-/js-tokens-4.0.0.tgz#19203fb59991df98e3a287050d4647cdeaf32499"
   integrity sha512-RdJUflcE3cUzKiMqQgsCu06FPu9UdIJO0beYbPhHN4k6apgJtifcoCtT9bcxOpYBtpD2kCM6Sbzg4CausW/PKQ==
@@ -5382,13 +5382,6 @@ loglevel@^1.6.8:
   version "1.7.1"
   resolved "https://registry.yarnpkg.com/loglevel/-/loglevel-1.7.1.tgz#005fde2f5e6e47068f935ff28573e125ef72f197"
   integrity sha512-Hesni4s5UkWkwCGJMQGAh71PaLUmKFM60dHvq0zi/vDhhrzuk+4GgNbTXJ12YYQJn6ZKBDNIjYcuQGKudvqrIw==
-
-loose-envify@^1.2.0:
-  version "1.4.0"
-  resolved "https://registry.yarnpkg.com/loose-envify/-/loose-envify-1.4.0.tgz#71ee51fa7be4caec1a63839f7e682d8132d30caf"
-  integrity sha512-lyuxPGr/Wfhrlem2CL/UcnUc1zcqKAImBDzukY7Y5F/yQiNdko6+fRLevlw1HgMySw7f611UIY408EtxRSoK3Q==
-  dependencies:
-    js-tokens "^3.0.0 || ^4.0.0"
 
 loud-rejection@^1.0.0:
   version "1.6.0"
@@ -8489,13 +8482,6 @@ vm-browserify@^1.0.1:
   resolved "https://registry.yarnpkg.com/vm-browserify/-/vm-browserify-1.1.2.tgz#78641c488b8e6ca91a75f511e7a3b32a86e5dda0"
   integrity sha512-2ham8XPWTONajOR0ohOKOHXkm3+gaBmGut3SRuu75xLd/RRaY6vqgh8NBYYk7+RW3u5AtzPQZG8F10LHkl0lAQ==
 
-vue-clickaway@^2.2.2:
-  version "2.2.2"
-  resolved "https://registry.yarnpkg.com/vue-clickaway/-/vue-clickaway-2.2.2.tgz#cecf6839575e8b2afc5d3edb3efb616d293dbb44"
-  integrity sha512-25SpjXKetL06GLYoLoC8pqAV6Cur9cQ//2g35GRFBV4FgoljbZZjTINR8g2NuVXXDMLSUXaKx5dutgO4PaDE7A==
-  dependencies:
-    loose-envify "^1.2.0"
-
 vue-hot-reload-api@^2.3.0:
   version "2.3.4"
   resolved "https://registry.yarnpkg.com/vue-hot-reload-api/-/vue-hot-reload-api-2.3.4.tgz#532955cc1eb208a3d990b3a9f9a70574657e08f2"
@@ -8525,11 +8511,6 @@ vue-multiselect@^2.1.6:
   version "2.1.6"
   resolved "https://registry.yarnpkg.com/vue-multiselect/-/vue-multiselect-2.1.6.tgz#5be5d811a224804a15c43a4edbb7485028a89c7f"
   integrity sha512-s7jmZPlm9FeueJg1RwJtnE9KNPtME/7C8uRWSfp9/yEN4M8XcS/d+bddoyVwVnvFyRh9msFo0HWeW0vTL8Qv+w==
-
-vue-page-transition@^0.2.2:
-  version "0.2.2"
-  resolved "https://registry.yarnpkg.com/vue-page-transition/-/vue-page-transition-0.2.2.tgz#a7c607ccc8dc67e7c05e66a5a9d54bd27d252d56"
-  integrity sha512-qOx+llJ28XX0VwJNJ4GVaeNBPRmPMZac2QQgrIHVUhpXyJx2CQ2XvoQOpGD1ge7QMY3PjZ6fwTbdBwZkA3I9qA==
 
 vue-router@^4.0.0-0:
   version "4.0.11"
@@ -8562,6 +8543,11 @@ vue3-click-away@^1.2.1:
   version "1.2.1"
   resolved "https://registry.yarnpkg.com/vue3-click-away/-/vue3-click-away-1.2.1.tgz#3645b2671db152d53c95b936540f7e449616f5d4"
   integrity sha512-8GA3rfFlwIS9oCqFzqGdk7CvUz7JwvoiBJQLW4BxrVQEgzTB9oo/lWMazz4XwouA8tnquIHa2ZBHLix689RpAg==
+
+vue3-loading-overlay@^0.0.0:
+  version "0.0.0"
+  resolved "https://registry.yarnpkg.com/vue3-loading-overlay/-/vue3-loading-overlay-0.0.0.tgz#b5c726b51114019c1771479f7558af1fb1e73f6e"
+  integrity sha512-Ly/sOMF+YTPDlVSsL4D8dTasT9A/PW+JlhFaY+sabOJXpafedxD1ADZbpT89XaM2QavRzfmq4s0nhcbr5I7BRQ==
 
 vue@^2.6.10:
   version "2.6.14"

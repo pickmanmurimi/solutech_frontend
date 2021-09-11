@@ -13,7 +13,6 @@
     <!-- ================================================== -->
     <datatable-advanced-filter v-if="advancedSearch" :FilterFields="FilterFields"
                                @search="ajaxSearch"></datatable-advanced-filter>
-ll
 
     <div v-if="loading || ajaxLoading" class="data-table-loading">
       <div class="data-table-loading-spinner"></div>
@@ -111,7 +110,7 @@ ll
 
             <!-- Display All Parsed Values -->
             <td v-for="(td, j) in item.details" v-show="td.show"
-                v-bind:key="j"
+                v-bind:key="j" class="text-capitalize"
                 @click="click(item.row, td.value, td.name, i), columnClick(td.click, item.row, td.value, td.name, i)">
               <!-- <component :is="i+'Component'" v-if="value.render"></component> -->
               <span v-html="td.rendered != null ? td.rendered : '----'"></span>
@@ -390,7 +389,7 @@ export default {
     // 	Page: int
     paginate(page) {
       if (this.ajaxPaginated) {
-        if (this.baseUrl !== this.url) {
+        if (this.baseUrl.includes("?")) {
           this.getItemsFromAjax(this.url + `&page=${page}`)
         } else {
           this.getItemsFromAjax(this.url + `?page=${page}`)
@@ -402,7 +401,7 @@ export default {
     // Navigate To Next Page
     next() {
       if (this.ajaxPaginated) {
-        if (this.baseUrl !== this.url) {
+        if (this.baseUrl.includes("?")) {
           let url = this.url + `&page=${this.meta.current_page + 1}`
           this.getItemsFromAjax(url)
           this.currentUrl = url
@@ -419,7 +418,7 @@ export default {
     // Navigate To Previous Page
     prev() {
       if (this.ajaxPaginated) {
-        if (this.baseUrl !== this.url) {
+        if (this.baseUrl.includes("?")) {
           let url = this.url + `&page=${this.meta.current_page - 1}`
           this.getItemsFromAjax(url)
           this.currentUrl = url
@@ -445,8 +444,14 @@ export default {
      * ajaxSearch
      */
     ajaxSearch(value) {
+
+      let searchValues = value.url
+      if (this.baseUrl.includes("?")) {
+        searchValues = value.url.replace('?','&');
+      }
       this.postObject = value.post
-      this.url = this.baseUrl + value.url
+      this.url = this.baseUrl + searchValues
+
       this.getItemsFromAjax(this.url)
     },
 

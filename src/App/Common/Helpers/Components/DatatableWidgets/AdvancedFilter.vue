@@ -5,7 +5,7 @@
             <div class="card-header p-3">
                 <div class="row">
                     <div class="col-8">
-                        <h6 class="mb-0 text-muted" @click="showAdvancedFilter = !showAdvancedFilter"><a href="#"
+                        <h6 class="mb-0 text-muted"><a @click.prevent="showAdvancedFilter = !showAdvancedFilter" href="#"
                                 class="text-muted"><i class="fas fa-filter"></i> Do an advanced search. ( click here )</a></h6>
                     </div>
                     <div class="col-4 text-muted text-right">
@@ -36,9 +36,9 @@
                         <!-- =================================================================================== -->
                         <!-- Phone field -->
                         <!-- =================================================================================== -->
-                        <PhoneInput v-if="FilterField.type == 'phone'" :name="FilterField.name" :text="FilterField.text"
-                            :formError="formError" @input="addValue( FilterField.name, filter[FilterField.name])"
-                            v-model="filter[FilterField.name]"></PhoneInput>
+<!--                        <PhoneInput v-if="FilterField.type == 'phone'" :name="FilterField.name" :text="FilterField.text"-->
+<!--                            :formError="formError" @input="addValue( FilterField.name, filter[FilterField.name])"-->
+<!--                            v-model="filter[FilterField.name]"></PhoneInput>-->
 
                         <!-- =================================================================================== -->
                         <!-- select -->
