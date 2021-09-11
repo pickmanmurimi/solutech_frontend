@@ -36,7 +36,7 @@ export default {
    */
   data() {
     return {
-      baseUrl: `/orders/order`,
+      baseUrl: `/orders/order?status=pending`,
       FilterFields: [
         {name: 'name', type: 'text', text: 'Registration', class: 'col-md-6'},
         {name: 'make', type: 'text', text: 'Make', class: 'col-md-6'},
