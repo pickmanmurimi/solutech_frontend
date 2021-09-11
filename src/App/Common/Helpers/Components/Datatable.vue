@@ -8,56 +8,49 @@
 <template>
   <div class="data-table">
 
-    <!-- ================================================== -->
+    <!-------------------------------------------------------------------------->
     <!-- datatable-advanced-filter -->
-    <!-- ================================================== -->
-    <datatable-advanced-filter v-if="advancedSearch" :FilterFields="FilterFields"
+    <!-------------------------------------------------------------------------->
+    <datatable-advanced-filter v-if="advancedSearch"  @close="openSearch = !openSearch"
+                               :ShowAdvancedFilter="openSearch" :FilterFields="FilterFields"
                                @search="ajaxSearch"></datatable-advanced-filter>
 
     <div v-if="loading || ajaxLoading" class="data-table-loading">
       <div class="data-table-loading-spinner"></div>
       <div class="data-table-loading-text">Loading Data</div>
     </div>
-    <div v-else class="data-table-inner">
+    <div v-else class="data-table-inner shadow p-2 rounded shadow">
+      <!-------------------------------------------------------------------------------------->
+      <!-- Header-->
+      <!-------------------------------------------------------------------------------------->
+      <div v-if="header"
+           class="data-table-control mt-2
+            mb-2 bg-gradient-white pt-4 px-4 pb-1 rounded shadow sticky-top">
 
-      <div v-if="header" class="row data-table-control mt-2">
-        <div v-if="limitable && !ajaxPaginated" class="col-md-8">
-          <div class="form-group">
-            <label>
-              Show
-              <select v-model="itemsPerPage" class="form-control form-control-sm custom-select custom-select-sm">
-                <option value="1">1</option>
-                <option value="2">2</option>
-                <option value="5">5</option>
-                <option value="10">10</option>
-                <option value="15">15</option>
-                <option value="20">20</option>
-                <option value="25">25</option>
-                <option value="50">50</option>
-                <option value="75">75</option>
-                <option value="100">100</option>
-              </select>
-              rows
-            </label>
-          </div>
-        </div>
-        <div v-if="searchable" class="col-md-4">
-          <div class="form-group">
-            <input v-model="query" class="form-control form-control-sm" placeholder="Quick Search" type="text"
+        <!-------------------------------------------------------------------------------------->
+        <!-- Search Input-->
+        <!-------------------------------------------------------------------------------------->
+        <div v-if="searchable">
+          <div class="mb-4">
+
+            <a class="advanced-filter-icon text-primary rounded-circle text-center" href="#" @click.prevent="openSearch = true">
+              <i class="fas fa-filter "></i>
+            </a>
+
+            <input v-model="query" class="form-control form-control-sm font-weight-bold form-control-alternative
+             col-8 col-md-4"
+                   placeholder="Quick Search" type="text"
                    @keyup="search(query)">
             <small v-if="ajax" class="text-muted">Search all columns currently displayed.</small>
+
+
           </div>
         </div>
-        <div v-if="showFilters" class="col-auto ml-auto">
-          Filters:
-          <div class="table-filters d-inline-block">
-            <div v-for="option in filters" :key="option.id" class="table-filter" @click="filter(option)">
-              <span>{{ option.title }}</span>
-            </div>
-          </div>
-        </div>
+
       </div>
-      <div class="table-responsive">
+
+
+      <div class="table-responsive rounded">
         <table :class="{straight: !breakWords, 'table-hover': !!onClick}"
                class="table table-hover border table-responsive-lg">
           <thead>
@@ -72,7 +65,8 @@
 
             <!-- Display Index If Requested -->
             <th
-                v-if="index" :class="{sort: sortColumn == '#', 'asc': sortColumn == '#' && asc, 'desc': sortColumn == '#' && !asc}"
+                v-if="index"
+                :class="{sort: sortColumn == '#', 'asc': sortColumn == '#' && asc, 'desc': sortColumn == '#' && !asc}"
                 class="sortable"
                 @click="sortIndex()"
             ><small>#</small></th>
@@ -244,6 +238,8 @@ export default {
       url: this.baseUrl,
       // currentUrl
       currentUrl: this.url,
+      // open advanced filter
+      openSearch : false
 
     }
   },
@@ -447,7 +443,7 @@ export default {
 
       let searchValues = value.url
       if (this.baseUrl.includes("?")) {
-        searchValues = value.url.replace('?','&');
+        searchValues = value.url.replace('?', '&');
       }
       this.postObject = value.post
       this.url = this.baseUrl + searchValues
@@ -827,6 +823,18 @@ export default {
 </script>
 
 <style lang="sass">
+
+.data-table-control
+  z-index: 998
+
+.advanced-filter-icon
+  position: absolute
+  right: 40px
+  border: solid
+  width: 40px
+  height: 40px
+  padding-top: 6px
+
 @keyframes spin
   from
     transform: rotate(0deg)

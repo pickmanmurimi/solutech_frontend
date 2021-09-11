@@ -15,6 +15,35 @@
              prevText="<i class='fas fa-chevron-left text-primary'></i>"
              nextText="<i class='fas fa-chevron-right text-primary'></i>"></datatable>
 
+  <!------------------------------------------------------------------------------------------------------->
+  <!-- Load off canvas -->
+  <!------------------------------------------------------------------------------------------------------->
+  <OffCanvas ref="loadOrder" title="Load Order" :show="showOffCanvas">
+
+    <h3>Order</h3>
+    <p>{{ currentOrder.name }}</p>
+
+    <h3>Delivery Address</h3>
+    <p>{{ currentOrder.address }}</p>
+
+    <h3>Current Depot</h3>
+    <p>{{ currentOrder.depot.name }}</p>
+
+    <h3> Depot Address</h3>
+    <p>{{ currentOrder.depot.address }}</p>
+
+    <hr>
+
+    <h3>Select Vehicle</h3>
+
+
+    <hr>
+
+    <button class="btn btn-sm btn-primary">Load Vehicle</button>
+
+  </OffCanvas>
+
+
 </template>
 
 <script>
@@ -36,10 +65,16 @@ export default {
    */
   data() {
     return {
+      showOffCanvas: false,
+      currentOrder: {
+        depot: {}
+      },
       baseUrl: `/orders/order?status=pending`,
       FilterFields: [
-        {name: 'name', type: 'text', text: 'Registration', class: 'col-md-6'},
-        {name: 'make', type: 'text', text: 'Make', class: 'col-md-6'},
+        {name: 'name', type: 'text', text: 'name', class: 'col-md-6'},
+        {name: 'address', type: 'text', text: 'delivery address', class: 'col-md-6'},
+        { name: 'depot', type: 'select',text:'Select Depot', class: 'col-md-4',  options: [ 'Nairobi', 'Mombasa']},
+        {name: 'depot_address', type: 'text', text: 'depot address', class: 'col-md-4'},
       ],
       columns: [
         {
@@ -68,20 +103,6 @@ export default {
       ],
       actions: [
         {
-          text: "view",
-          color: "success",
-          size: "sm mr-2",
-          show: () => {
-            return true
-          },
-          action: (row, index) => {
-            // this.$router.push({
-            //   name: 'Driver',
-            //   params: {uuid: row.uuid}
-            // })
-          },
-        },
-        {
           text: "Load",
           color: "primary",
           size: "sm mr-2",
@@ -89,10 +110,8 @@ export default {
             return true
           },
           action: (row, index) => {
-            // this.$router.push({
-            //   name: 'Driver',
-            //   params: {uuid: row.uuid}
-            // })
+            this.currentOrder = row
+            this.$refs['loadOrder'].openOffCanvas()
           },
         },
       ],

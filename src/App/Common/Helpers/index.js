@@ -1,29 +1,31 @@
 // Install all components
 
-import {MainLayout } from "./Layout";
+import {MainLayout} from "./Layout";
 import {
-  CenterLoader,
-  Card,
-  Datatable,
-  BaseInput,
-  Multiselect,
-  AjaxPagination,
-  Modal
+    CenterLoader,
+    Card,
+    Datatable,
+    BaseInput,
+    Multiselect,
+    AjaxPagination,
+    Modal,
+    OffCanvas
 } from "@/App/Common/Helpers/Components";
 
 export default {
-  install: function(app) {
-    //layout
-    app.component("main-layout", MainLayout);
+    install: function (app) {
+        //layout
+        app.component("main-layout", MainLayout);
 
-    // components
-    app.component("center-loader", CenterLoader);
-    app.component("card", Card);
-    app.component("datatable", Datatable);
-    app.component("BaseInput", BaseInput);
-    app.component("SelectInput", Multiselect);
-    app.component("AjaxPagination", AjaxPagination);
-    app.component("Modal", Modal);
+        // components
+        app.component("center-loader", CenterLoader);
+        app.component("card", Card);
+        app.component("datatable", Datatable);
+        app.component("BaseInput", BaseInput);
+        app.component("SelectInput", Multiselect);
+        app.component("AjaxPagination", AjaxPagination);
+        app.component("Modal", Modal);
+        app.component("OffCanvas", OffCanvas);
 
-  }
+    }
 };
