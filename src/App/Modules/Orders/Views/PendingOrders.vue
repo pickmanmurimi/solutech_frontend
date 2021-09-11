@@ -66,7 +66,6 @@
       <button :disabled="vehicle.vehicle_type.length" class="btn btn-primary" @click="loadOrder">Load Order</button>
     </div>
 
-
   </OffCanvas>
 
   <!------------------------------------------------------------------------------------------------------->

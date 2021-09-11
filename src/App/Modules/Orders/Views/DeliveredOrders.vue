@@ -1,11 +1,12 @@
 <template>
 
+
   <!------------------------------------------------------------------------------------------------------->
   <!-- Orders -->
   <!------------------------------------------------------------------------------------------------------->
   <h1>Delivered Orders</h1>
 
-  <datatable ref="vehicles"
+  <datatable ref="orders"
              :baseUrl="baseUrl"
              advancedSearch
              :FilterFields="FilterFields"
@@ -14,7 +15,6 @@
              :columns="columns" :actions="actions"
              prevText="<i class='fas fa-chevron-left text-primary'></i>"
              nextText="<i class='fas fa-chevron-right text-primary'></i>"></datatable>
-
 </template>
 
 <script>
@@ -24,7 +24,7 @@ export default {
   /**
    * name
    */
-  name: "AvailableVehicles",
+  name: "DeliveredOrders",
 
   /**
    * components
@@ -36,67 +36,42 @@ export default {
    */
   data() {
     return {
-      baseUrl: `/vehicles/vehicle?status=available`,
+      baseUrl: `/orders/order?status=delivered`,
       FilterFields: [
-        {name: 'registration', type: 'text', text: 'Registration', class: 'col-md-6'},
-        {name: 'make', type: 'text', text: 'Make', class: 'col-md-6'},
+        {name: 'name', type: 'text', text: 'name', class: 'col-md-6'},
+        {name: 'address', type: 'text', text: 'delivery address', class: 'col-md-6'},
+        {name: 'depot', type: 'select', text: 'Select Depot', class: 'col-md-4', options: ['Nairobi', 'Mombasa']},
+        {name: 'depot_address', type: 'text', text: 'depot address', class: 'col-md-4'},
       ],
       columns: [
         {
-          name: "registration",
-          th: "Registration"
-        },
-        {
-          name: "make",
-          th: "Make"
-        },
-        {
-          th: "Status",
+          th: "Name",
           render(row) {
-            return `<span class="badge badge-success"> ${row.status} </span>`
+            return `<span class="d-block"> ${row.name} </span>
+                    <span class="badge badge-success"> ${row.status} </span>`
           }
         },
         {
-          th: "Type",
+          name: "address",
+          th: "Delivery Address"
+        },
+        {
+          th: "depot",
           render(row) {
-            return row?.vehicle_type?.name
+            return `<span class="d-block"> ${row.depot.name} </span>
+                    <span class="d-block"> ${row.depot.address} </span>`
           }
         },
         {
-          name: "created_at_readable",
-          th: "Created At"
+          th: "vehicle",
+          render(row) {
+            return `<span class="d-block"> ${row.vehicle.registration} </span>
+                    <span class="d-block"> ${row.vehicle.vehicle_type.name} </span>`
+          }
         },
 
       ],
       actions: [
-        {
-          text: "view",
-          color: "success",
-          size: "sm mr-2",
-          show: () => {
-            return true
-          },
-          action: (row, index) => {
-            // this.$router.push({
-            //   name: 'Driver',
-            //   params: {uuid: row.uuid}
-            // })
-          },
-        },
-        {
-          text: "Load",
-          color: "primary",
-          size: "sm mr-2",
-          show: () => {
-            return true
-          },
-          action: (row, index) => {
-            // this.$router.push({
-            //   name: 'Driver',
-            //   params: {uuid: row.uuid}
-            // })
-          },
-        },
       ],
     }
   }

@@ -1,221 +1,221 @@
-<template>
-  <div>
-    <div class="form-group">
-      <small v-if="text" class="text-muted"> {{ text }} </small>
-      <multiselect :close-on-select="closeOnSelect" :disabled="disabled" :hide-selected="hideSelected"
-                   :label="label" :limit="limit" :multiple="multiple" :options="selectOptions" :placeholder="placeholder"
-                   :searchable="searchable" :tag-placeholder="tagPlaceholder" :taggable="taggable" :track-by="trackBy"
-                   :value="selectedItems" @input="handleInput" @tag="addTag">
-      </multiselect>
-      <small v-if="formError[ name ]" class="form-text text-danger"> {{ formError[name][0] }} </small>
-      <small v-if="showSelectAll" class="text-primary"><a href="javascript.void(0)" @click.prevent="removeAll()">Remove
-        all</a></small>
-    </div>
-  </div>
-</template>
+<!--<template>-->
+<!--  <div>-->
+<!--    <div class="form-group">-->
+<!--      <small v-if="text" class="text-muted"> {{ text }} </small>-->
+<!--      <multiselect :close-on-select="closeOnSelect" :disabled="disabled" :hide-selected="hideSelected"-->
+<!--                   :label="label" :limit="limit" :multiple="multiple" :options="selectOptions" :placeholder="placeholder"-->
+<!--                   :searchable="searchable" :tag-placeholder="tagPlaceholder" :taggable="taggable" :track-by="trackBy"-->
+<!--                   :value="selectedItems" @input="handleInput" @tag="addTag">-->
+<!--      </multiselect>-->
+<!--      <small v-if="formError[ name ]" class="form-text text-danger"> {{ formError[name][0] }} </small>-->
+<!--      <small v-if="showSelectAll" class="text-primary"><a href="javascript.void(0)" @click.prevent="removeAll()">Remove-->
+<!--        all</a></small>-->
+<!--    </div>-->
+<!--  </div>-->
+<!--</template>-->
 
-<script>
-import Multiselect from '@vueform/multiselect'
+<!--<script>-->
+<!--import Multiselect from '@vueform/multiselect'-->
 
-export default {
-  /**
-   * components
-   */
-  components: {
-    Multiselect
-  },
+<!--export default {-->
+<!--  /**-->
+<!--   * components-->
+<!--   */-->
+<!--  components: {-->
+<!--    Multiselect-->
+<!--  },-->
 
-  /**
-   * data
-   */
-  data() {
-    return {
-      selectedItems: this.modelValue
-    }
-  },
+<!--  /**-->
+<!--   * data-->
+<!--   */-->
+<!--  data() {-->
+<!--    return {-->
+<!--      selectedItems: this.modelValue-->
+<!--    }-->
+<!--  },-->
 
-  /**
-   * computed
-   */
-  computed: {
+<!--  /**-->
+<!--   * computed-->
+<!--   */-->
+<!--  computed: {-->
 
 
-    /**
-     * selectOptions
-     */
-    selectOptions() {
-      let options = this.options;
-      // show select all
-      if (this.showSelectAll) {
-        options.unshift({
-          name: "Select all",
-          value: 0
-        })
-      }
-      return options
-    }
-  },
+<!--    /**-->
+<!--     * selectOptions-->
+<!--     */-->
+<!--    selectOptions() {-->
+<!--      let options = this.options;-->
+<!--      // show select all-->
+<!--      if (this.showSelectAll) {-->
+<!--        options.unshift({-->
+<!--          name: "Select all",-->
+<!--          value: 0-->
+<!--        })-->
+<!--      }-->
+<!--      return options-->
+<!--    }-->
+<!--  },-->
 
-  /**
-   * props
-   */
-  props: {
-    modelValue: {
-      required: true,
-      default: () => {
-        return []
-      }
-    },
-    options: {
-      required: true,
-      type: Array,
-      default: () => {
-        return []
-      }
-    },
-    showSelectAll: {
-      type: Boolean,
-      default: () => {
-        return false
-      }
-    },
-    hideSelected: {
-      default: () => {
-        return false
-      }
-    },
-    limit: {
-      default: () => {
-        return 5
-      }
-    },
-    tagPlaceholder: {
-      default: () => {
-        return 'Select Role'
-      }
-    },
-    placeholder: {
-      default: () => {
-        return 'Search or Select'
-      }
-    },
-    label: {
-      default: () => {
-        return 'name'
-      }
-    },
-    name: {
-      required: true,
-    },
-    trackBy: {
-      default: () => {
-        return 'uuid'
-      }
-    },
-    closeOnSelect: {
-      default: () => {
-        return true
-      }
-    },
-    multiple: {
-      default: () => {
-        return true
-      }
-    },
-    taggable: {
-      default: () => {
-        return true
-      }
-    },
-    searchable: {
-      default: () => {
-        return false
-      }
-    },
-    disabled: {
-      default: () => {
-        return false
-      }
-    },
-    formError: {
-      default: () => {
-        return []
-      }
-    },
-    text: {
-      default: () => {
-        return ''
-      }
-    },
-  },
+<!--  /**-->
+<!--   * props-->
+<!--   */-->
+<!--  props: {-->
+<!--    modelValue: {-->
+<!--      required: true,-->
+<!--      default: () => {-->
+<!--        return []-->
+<!--      }-->
+<!--    },-->
+<!--    options: {-->
+<!--      required: true,-->
+<!--      type: Array,-->
+<!--      default: () => {-->
+<!--        return []-->
+<!--      }-->
+<!--    },-->
+<!--    showSelectAll: {-->
+<!--      type: Boolean,-->
+<!--      default: () => {-->
+<!--        return false-->
+<!--      }-->
+<!--    },-->
+<!--    hideSelected: {-->
+<!--      default: () => {-->
+<!--        return false-->
+<!--      }-->
+<!--    },-->
+<!--    limit: {-->
+<!--      default: () => {-->
+<!--        return 5-->
+<!--      }-->
+<!--    },-->
+<!--    tagPlaceholder: {-->
+<!--      default: () => {-->
+<!--        return 'Select Role'-->
+<!--      }-->
+<!--    },-->
+<!--    placeholder: {-->
+<!--      default: () => {-->
+<!--        return 'Search or Select'-->
+<!--      }-->
+<!--    },-->
+<!--    label: {-->
+<!--      default: () => {-->
+<!--        return 'name'-->
+<!--      }-->
+<!--    },-->
+<!--    name: {-->
+<!--      required: true,-->
+<!--    },-->
+<!--    trackBy: {-->
+<!--      default: () => {-->
+<!--        return 'uuid'-->
+<!--      }-->
+<!--    },-->
+<!--    closeOnSelect: {-->
+<!--      default: () => {-->
+<!--        return true-->
+<!--      }-->
+<!--    },-->
+<!--    multiple: {-->
+<!--      default: () => {-->
+<!--        return true-->
+<!--      }-->
+<!--    },-->
+<!--    taggable: {-->
+<!--      default: () => {-->
+<!--        return true-->
+<!--      }-->
+<!--    },-->
+<!--    searchable: {-->
+<!--      default: () => {-->
+<!--        return false-->
+<!--      }-->
+<!--    },-->
+<!--    disabled: {-->
+<!--      default: () => {-->
+<!--        return false-->
+<!--      }-->
+<!--    },-->
+<!--    formError: {-->
+<!--      default: () => {-->
+<!--        return []-->
+<!--      }-->
+<!--    },-->
+<!--    text: {-->
+<!--      default: () => {-->
+<!--        return ''-->
+<!--      }-->
+<!--    },-->
+<!--  },-->
 
-  /**
-   * methods
-   */
-  methods: {
+<!--  /**-->
+<!--   * methods-->
+<!--   */-->
+<!--  methods: {-->
 
-    /**
-     * setInitValue
-     */
-    setInitValue(value) {
-      this.selectedItems = value
-    },
+<!--    /**-->
+<!--     * setInitValue-->
+<!--     */-->
+<!--    setInitValue(value) {-->
+<!--      this.selectedItems = value-->
+<!--    },-->
 
-    /**
-     * addTag
-     */
-    addTag(newTag) {
-      this.$emit('tag', newTag)
-    },
+<!--    /**-->
+<!--     * addTag-->
+<!--     */-->
+<!--    addTag(newTag) {-->
+<!--      this.$emit('tag', newTag)-->
+<!--    },-->
 
-    /**
-     * handleInput
-     */
-    handleInput(e) {
-      // check if we have a select all
-      if (this.showSelectAll) {
-        // if select all is clicked
-        for (let item of e) {
-          if (item.value === 0) {
-            e.pop(item)
-            this.selectAll()
-            this.$emit('update:modelValue', this.selectedItems)
-            return
-          }
-        }
-      }
+<!--    /**-->
+<!--     * handleInput-->
+<!--     */-->
+<!--    handleInput(e) {-->
+<!--      // check if we have a select all-->
+<!--      if (this.showSelectAll) {-->
+<!--        // if select all is clicked-->
+<!--        for (let item of e) {-->
+<!--          if (item.value === 0) {-->
+<!--            e.pop(item)-->
+<!--            this.selectAll()-->
+<!--            this.$emit('update:modelValue', this.selectedItems)-->
+<!--            return-->
+<!--          }-->
+<!--        }-->
+<!--      }-->
 
-      this.selectedItems = e
-      this.$emit('update:modelValue', e)
-    },
+<!--      this.selectedItems = e-->
+<!--      this.$emit('update:modelValue', e)-->
+<!--    },-->
 
-    /**
-     * selectAll
-     */
-    selectAll() {
-      let select_all = [];
-      // select all
-      for (let item of this.options) {
+<!--    /**-->
+<!--     * selectAll-->
+<!--     */-->
+<!--    selectAll() {-->
+<!--      let select_all = [];-->
+<!--      // select all-->
+<!--      for (let item of this.options) {-->
 
-        if (item.value !== 0) {
-          select_all.push(item);
-        }
-      }
+<!--        if (item.value !== 0) {-->
+<!--          select_all.push(item);-->
+<!--        }-->
+<!--      }-->
 
-      this.selectedItems = select_all
-    },
+<!--      this.selectedItems = select_all-->
+<!--    },-->
 
-    /**
-     * removeAll
-     */
-    removeAll() {
-      this.selectedItems = []
-      this.$emit('update:modelValue', this.selectedItems)
+<!--    /**-->
+<!--     * removeAll-->
+<!--     */-->
+<!--    removeAll() {-->
+<!--      this.selectedItems = []-->
+<!--      this.$emit('update:modelValue', this.selectedItems)-->
 
-    }
-  },
-}
+<!--    }-->
+<!--  },-->
+<!--}-->
 
-</script>
+<!--</script>-->
 
-<style src="@vueform/multiselect/themes/default.css"></style>
+<!--&lt;!&ndash;<style src="@vueform/multiselect/themes/default.css"></style>&ndash;&gt;-->

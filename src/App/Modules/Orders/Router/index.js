@@ -44,7 +44,7 @@ export default [
                 },
             },
             {
-                path: "/vehicles/available",
+                path: "/orders/available",
                 component: DispatchedOrders,
                 name: "DispatchedOrders",
                 props: true,
@@ -58,7 +58,7 @@ export default [
                 },
             },
             {
-                path: "/vehicles/available",
+                path: "/orders/delivered",
                 component: DeliveredOrders,
                 name: "DeliveredOrders",
                 props: true,

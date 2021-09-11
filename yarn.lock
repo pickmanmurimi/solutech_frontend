@@ -972,6 +972,11 @@
   resolved "https://registry.yarnpkg.com/@soda/get-current-script/-/get-current-script-1.0.2.tgz#a53515db25d8038374381b73af20bb4f2e508d87"
   integrity sha512-T7VNNlYVM1SgQ+VsMYhnDkcGmWhQdL0bDyGm5TlQ3GBXnJscEClUUOKduWTmm2zCnvNLC1hc3JpuXjs/nFOc5w==
 
+"@suadelabs/vue3-multiselect@^1.0.2":
+  version "1.0.2"
+  resolved "https://registry.yarnpkg.com/@suadelabs/vue3-multiselect/-/vue3-multiselect-1.0.2.tgz#ba9bdb1a47c76ce47b30bb9025d9647ddc8dcaf9"
+  integrity sha512-bRe5SOAkY/egKC4yMQ1lXg3BTlnulA+0CXbl9yM0X7oMh8oavJUlSgb7WV7EXyOzIH2Ot0k28hdF3/K6D/YEFA==
+
 "@types/body-parser@*":
   version "1.19.1"
   resolved "https://registry.yarnpkg.com/@types/body-parser/-/body-parser-1.19.1.tgz#0c0174c42a7d017b818303d4b5d969cb0b75929c"
@@ -1499,11 +1504,6 @@
   version "1.3.0"
   resolved "https://registry.yarnpkg.com/@vue/web-component-wrapper/-/web-component-wrapper-1.3.0.tgz#b6b40a7625429d2bd7c2281ddba601ed05dc7f1a"
   integrity sha512-Iu8Tbg3f+emIIMmI2ycSI8QcEuAUgPTgHwesDU1eKMLE4YC/c/sFbGc70QgMq31ijRftV0R7vCm9co6rldCeOA==
-
-"@vueform/multiselect@^2.2.0":
-  version "2.2.0"
-  resolved "https://registry.yarnpkg.com/@vueform/multiselect/-/multiselect-2.2.0.tgz#4de789e48312bd9e1edc9320cf5bdf9f8dc3f3e7"
-  integrity sha512-ozY8/JDAmrBITgEmgB61Grffw3xlQm0E7od/wRsCjx9eFFCAlguLsPOAXZz5Y8eHVjLR7RPA2M5L6A3Exttmeg==
 
 "@webassemblyjs/ast@1.9.0":
   version "1.9.0"
@@ -8511,11 +8511,6 @@ vue-loader@^15.9.2:
     loader-utils "^1.1.0"
     vue-hot-reload-api "^2.3.0"
     vue-style-loader "^4.1.0"
-
-vue-multiselect@^2.1.6:
-  version "2.1.6"
-  resolved "https://registry.yarnpkg.com/vue-multiselect/-/vue-multiselect-2.1.6.tgz#5be5d811a224804a15c43a4edbb7485028a89c7f"
-  integrity sha512-s7jmZPlm9FeueJg1RwJtnE9KNPtME/7C8uRWSfp9/yEN4M8XcS/d+bddoyVwVnvFyRh9msFo0HWeW0vTL8Qv+w==
 
 vue-router@^4.0.0-0:
   version "4.0.11"

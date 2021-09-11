@@ -15,10 +15,16 @@
              prevText="<i class='fas fa-chevron-left text-primary'></i>"
              nextText="<i class='fas fa-chevron-right text-primary'></i>"></datatable>
 
+
+  <view-vehicle :vehicle="vehicle" ref="vehicle"></view-vehicle>
+  <edit-vehicle @updated="$refs['vehicles'].reload()" :vehicle="vehicle" ref="editVehicle"></edit-vehicle>
+
 </template>
 
 <script>
 import MainLayout from "../../../Common/Helpers/Layout/MainLayout";
+import ViewVehicle from "../Components/ViewVehicle";
+import EditVehicle from "../Components/EditVehicle";
 
 export default {
   /**
@@ -29,7 +35,7 @@ export default {
   /**
    * components
    */
-  components: {MainLayout},
+  components: {EditVehicle, ViewVehicle, MainLayout},
 
   /**
    * data
@@ -37,6 +43,9 @@ export default {
   data() {
     return {
       baseUrl: `/vehicles/vehicle?status=available`,
+      vehicle: {
+        vehicle_type : {}
+      },
       FilterFields: [
       ],
       columns: [
@@ -75,24 +84,20 @@ export default {
             return true
           },
           action: (row, index) => {
-            // this.$router.push({
-            //   name: 'Driver',
-            //   params: {uuid: row.uuid}
-            // })
+            this.vehicle = row
+            this.$refs['vehicle'].openVehicleView()
           },
         },
         {
-          text: "Load",
-          color: "primary",
+          text: "edit",
+          color: "warning",
           size: "sm mr-2",
           show: () => {
             return true
           },
           action: (row, index) => {
-            // this.$router.push({
-            //   name: 'Driver',
-            //   params: {uuid: row.uuid}
-            // })
+            this.vehicle = row
+            this.$refs['editVehicle'].openVehicleView()
           },
         },
       ],

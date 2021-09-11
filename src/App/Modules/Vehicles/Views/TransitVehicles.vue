@@ -15,10 +15,14 @@
              :columns="columns" :actions="actions"
              prevText="<i class='fas fa-chevron-left text-primary'></i>"
              nextText="<i class='fas fa-chevron-right text-primary'></i>"></datatable>
+
+  <view-vehicle :vehicle="vehicle" ref="vehicle"></view-vehicle>
+
 </template>
 
 <script>
 import MainLayout from "../../../Common/Helpers/Layout/MainLayout";
+import ViewVehicle from "../Components/ViewVehicle";
 
 export default {
   /**
@@ -29,7 +33,7 @@ export default {
   /**
    * components
    */
-  components: {MainLayout},
+  components: {ViewVehicle, MainLayout},
 
   /**
    * data
@@ -37,6 +41,9 @@ export default {
   data() {
     return {
       baseUrl: `/vehicles/vehicle?status=transit`,
+      vehicle: {
+        vehicle_type : {}
+      },
       FilterFields: [],
       columns: [
         {
@@ -65,7 +72,20 @@ export default {
         },
 
       ],
-      actions: [],
+      actions: [
+        {
+          text: "view",
+          color: "success",
+          size: "sm mr-2",
+          show: () => {
+            return true
+          },
+          action: (row, index) => {
+            this.vehicle = row
+            this.$refs['vehicle'].openVehicleView()
+          },
+        },
+      ],
     }
   }
 }
