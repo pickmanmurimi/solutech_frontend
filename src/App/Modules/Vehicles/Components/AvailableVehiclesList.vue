@@ -1,11 +1,5 @@
 <template>
-
-  <!------------------------------------------------------------------------------------------------------->
-  <!-- Vehicles -->
-  <!------------------------------------------------------------------------------------------------------->
-  <h1>Available Vehicles</h1>
-
-  <datatable ref="vehicles"
+  <datatable ref="orders"
              :baseUrl="baseUrl"
              advancedSearch
              :FilterFields="FilterFields"
@@ -14,22 +8,14 @@
              :columns="columns" :actions="actions"
              prevText="<i class='fas fa-chevron-left text-primary'></i>"
              nextText="<i class='fas fa-chevron-right text-primary'></i>"></datatable>
-
 </template>
 
 <script>
-import MainLayout from "../../../Common/Helpers/Layout/MainLayout";
-
 export default {
   /**
    * name
    */
-  name: "AvailableVehicles",
-
-  /**
-   * components
-   */
-  components: {MainLayout},
+  name: "AvailableVehiclesList",
 
   /**
    * data
@@ -38,6 +24,8 @@ export default {
     return {
       baseUrl: `/vehicles/vehicle?status=available`,
       FilterFields: [
+        {name: 'registration', type: 'text', text: 'Registration', class: 'col-md-6'},
+        {name: 'make', type: 'text', text: 'Make', class: 'col-md-6'},
       ],
       columns: [
         {
@@ -60,39 +48,17 @@ export default {
             return row?.vehicle_type?.name
           }
         },
-        {
-          name: "created_at_readable",
-          th: "Created At"
-        },
-
       ],
       actions: [
         {
-          text: "view",
+          text: "Select Vehicle",
           color: "success",
           size: "sm mr-2",
           show: () => {
             return true
           },
           action: (row, index) => {
-            // this.$router.push({
-            //   name: 'Driver',
-            //   params: {uuid: row.uuid}
-            // })
-          },
-        },
-        {
-          text: "Load",
-          color: "primary",
-          size: "sm mr-2",
-          show: () => {
-            return true
-          },
-          action: (row, index) => {
-            // this.$router.push({
-            //   name: 'Driver',
-            //   params: {uuid: row.uuid}
-            // })
+            this.$emit('selected', row)
           },
         },
       ],

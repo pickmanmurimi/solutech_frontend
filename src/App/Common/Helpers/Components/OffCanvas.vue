@@ -43,10 +43,6 @@ export default {
    * props
    */
   props: {
-    show: {
-      type: Boolean,
-      required: true
-    },
     title: {
       type: String,
       required: true

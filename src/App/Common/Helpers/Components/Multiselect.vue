@@ -15,7 +15,7 @@
 </template>
 
 <script>
-import Multiselect from 'vue-multiselect'
+import Multiselect from '@vueform/multiselect'
 
 export default {
   /**
@@ -30,7 +30,7 @@ export default {
    */
   data() {
     return {
-      selectedItems: this.value
+      selectedItems: this.modelValue
     }
   },
 
@@ -38,13 +38,7 @@ export default {
    * computed
    */
   computed: {
-    /**
-     * modelValue
-     * @deprecated
-     */
-    modelValue() {
-      return this.value
-    },
+
 
     /**
      * selectOptions
@@ -66,7 +60,7 @@ export default {
    * props
    */
   props: {
-    value: {
+    modelValue: {
       required: true,
       default: () => {
         return []
@@ -115,7 +109,7 @@ export default {
     },
     trackBy: {
       default: () => {
-        return 'id'
+        return 'uuid'
       }
     },
     closeOnSelect: {
@@ -185,14 +179,14 @@ export default {
           if (item.value === 0) {
             e.pop(item)
             this.selectAll()
-            this.$emit('input', this.selectedItems)
+            this.$emit('update:modelValue', this.selectedItems)
             return
           }
         }
       }
 
       this.selectedItems = e
-      this.$emit('input', e)
+      this.$emit('update:modelValue', e)
     },
 
     /**
@@ -216,7 +210,7 @@ export default {
      */
     removeAll() {
       this.selectedItems = []
-      this.$emit('input', this.selectedItems)
+      this.$emit('update:modelValue', this.selectedItems)
 
     }
   },
@@ -224,4 +218,4 @@ export default {
 
 </script>
 
-<style src="vue-multiselect/dist/vue-multiselect.min.css"></style>
+<style src="@vueform/multiselect/themes/default.css"></style>

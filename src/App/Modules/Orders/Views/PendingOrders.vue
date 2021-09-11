@@ -18,36 +18,74 @@
   <!------------------------------------------------------------------------------------------------------->
   <!-- Load off canvas -->
   <!------------------------------------------------------------------------------------------------------->
-  <OffCanvas ref="loadOrder" title="Load Order" :show="showOffCanvas">
+  <OffCanvas ref="loadOrder" title="Load Order">
 
-    <h3>Order</h3>
-    <p>{{ currentOrder.name }}</p>
+    <div>
+      <h3>Order</h3>
 
-    <h3>Delivery Address</h3>
-    <p>{{ currentOrder.address }}</p>
+      <div v-if="Object.keys(formError).length !== 0" class="alert alert-danger">
+        {{ formError.message }} <br>
+        Please select a a vehicle form the available vehicles.
+      </div>
 
-    <h3>Current Depot</h3>
-    <p>{{ currentOrder.depot.name }}</p>
+      <p>{{ currentOrder.name }}</p>
 
-    <h3> Depot Address</h3>
-    <p>{{ currentOrder.depot.address }}</p>
+      <h3>Delivery Address</h3>
+      <p>{{ currentOrder.address }}</p>
 
-    <hr>
+      <h3>Current Depot</h3>
+      <p>{{ currentOrder.depot.name }}</p>
 
-    <h3>Select Vehicle</h3>
+      <h3> Depot Address</h3>
+      <p>{{ currentOrder.depot.address }}</p>
+
+      <hr>
+
+      <h3>Select Vehicle</h3>
+
+      <button class="btn btn-sm btn-primary" @click="showAvailableVehicles">Get Available Vehicles</button>
+
+      <div class="row mt-2" v-if="vehicle.vehicle_type.length">
+        <div class="col-md-4">
+          <h3> Registration </h3>
+          <p>{{ vehicle.registration }}</p>
+        </div>
+        <div class="col-md-4">
+          <h3> Type </h3>
+          <p>{{ vehicle.vehicle_type.name }}</p>
+        </div>
+        <div class="col-md-4">
+          <h3> Make </h3>
+          <p>{{ vehicle.make }}</p>
+        </div>
+      </div>
 
 
-    <hr>
+      <hr>
 
-    <button class="btn btn-sm btn-primary">Load Vehicle</button>
+      <button :disabled="vehicle.vehicle_type.length" class="btn btn-primary" @click="loadOrder">Load Order</button>
+    </div>
+
 
   </OffCanvas>
 
+  <!------------------------------------------------------------------------------------------------------->
+  <!-- Current Vehicles Modal -->
+  <!------------------------------------------------------------------------------------------------------->
+  <modal title="Available Vehicles"
+         modalId="AvailableVehicles"
+         size="lg">
+    <template v-slot:body>
+      <AvailableVehiclesList @selected="selectVehicle"></AvailableVehiclesList>
+    </template>
+
+  </modal>
 
 </template>
 
 <script>
 import MainLayout from "../../../Common/Helpers/Layout/MainLayout";
+import AvailableVehiclesList from "../../Vehicles/Components/AvailableVehiclesList";
 
 export default {
   /**
@@ -58,7 +96,7 @@ export default {
   /**
    * components
    */
-  components: {MainLayout},
+  components: {AvailableVehiclesList, MainLayout},
 
   /**
    * data
@@ -69,11 +107,16 @@ export default {
       currentOrder: {
         depot: {}
       },
+      vehicles: [],
+      formError: {},
+      vehicle: {
+        vehicle_type: {}
+      },
       baseUrl: `/orders/order?status=pending`,
       FilterFields: [
         {name: 'name', type: 'text', text: 'name', class: 'col-md-6'},
         {name: 'address', type: 'text', text: 'delivery address', class: 'col-md-6'},
-        { name: 'depot', type: 'select',text:'Select Depot', class: 'col-md-4',  options: [ 'Nairobi', 'Mombasa']},
+        {name: 'depot', type: 'select', text: 'Select Depot', class: 'col-md-4', options: ['Nairobi', 'Mombasa']},
         {name: 'depot_address', type: 'text', text: 'depot address', class: 'col-md-4'},
       ],
       columns: [
@@ -115,6 +158,56 @@ export default {
           },
         },
       ],
+    }
+  },
+
+
+  /**
+   * methods
+   */
+  methods: {
+
+    /**
+     * showAvailableVehicles
+     */
+    showAvailableVehicles() {
+      $('#AvailableVehicles').modal('show')
+    },
+    /**
+     * selectVehicle
+     */
+    selectVehicle(vehicle) {
+      $('#AvailableVehicles').modal('hide')
+      this.vehicle = vehicle
+    },
+
+    /**
+     * loadOrder
+     */
+    loadOrder() {
+      this.$loading.show()
+      const order = {
+        "vehicle_uuid": this.vehicle.uuid,
+        "order_uuid": this.currentOrder.uuid
+      }
+      this.formError = {}
+      this.$axios.post('orders/delivery/load', order)
+          .then(() => {
+            this.$loading.hide()
+            swal("Order is loading", "", "success")
+            this.vehicle = {
+              vehicle_type: {}
+            }
+            this.$refs['loadOrder'].closeOffCanvas()
+            this.$refs['orders'].reload()
+          })
+          .catch(err => {
+            this.$loading.hide()
+            if (err?.response?.data) {
+              this.formError = err?.response?.data
+              console.log(this.formError)
+            }
+          })
     }
   }
 }
