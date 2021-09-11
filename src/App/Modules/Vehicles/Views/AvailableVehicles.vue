@@ -17,7 +17,7 @@
 
 
   <view-vehicle :vehicle="vehicle" ref="vehicle"></view-vehicle>
-  <edit-vehicle @updated="$refs['vehicles'].reload()" :vehicle="vehicle" ref="editVehicle"></edit-vehicle>
+  <edit-vehicle @updated="reload" :vehicle="vehicle" ref="editVehicle"></edit-vehicle>
 
 </template>
 
@@ -102,7 +102,20 @@ export default {
         },
       ],
     }
+  },
+
+  /**
+   * methods
+   */
+  methods : {
+    /**
+     * reload
+     */
+    reload() {
+      this.$refs['vehicles'].reload()
+    }
   }
+
 }
 </script>
 

@@ -47,6 +47,11 @@ export default {
   name: "EditVehicle",
 
   /**
+   * emits
+   */
+  emits:['updated'],
+
+  /**
    * components
    */
   components : { Multiselect },
