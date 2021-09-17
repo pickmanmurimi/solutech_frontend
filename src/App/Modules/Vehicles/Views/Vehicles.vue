@@ -1,10 +1,7 @@
 <template>
   <main-layout>
     <template v-slot:content>
-      <card>
-        <template v-slot:header>
-          <button class="btn btn-primary">Add new Vehicle</button>
-        </template>
+      <card :show-header="false">
 
         <template v-slot:body>
           <!------------------------------------------------------------------------------------------------------->
@@ -29,7 +26,7 @@ export default {
   /**
    * components
    */
-  components: {MainLayout},
+  components: { MainLayout},
 
   /**
    * data

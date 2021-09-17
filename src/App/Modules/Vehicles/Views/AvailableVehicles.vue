@@ -3,6 +3,8 @@
   <!------------------------------------------------------------------------------------------------------->
   <!-- Vehicles -->
   <!------------------------------------------------------------------------------------------------------->
+  <button @click="$refs['addVehicle'].openVehicleView()" class="btn btn-primary mb-3">Add new Vehicle</button>
+
   <h1>Available Vehicles</h1>
 
   <datatable ref="vehicles"
@@ -18,6 +20,7 @@
 
   <view-vehicle :vehicle="vehicle" ref="vehicle"></view-vehicle>
   <edit-vehicle @updated="reload" :vehicle="vehicle" ref="editVehicle"></edit-vehicle>
+  <add-vehicle @added="reload" ref="addVehicle"></add-vehicle>
 
 </template>
 
@@ -25,6 +28,7 @@
 import MainLayout from "../../../Common/Helpers/Layout/MainLayout";
 import ViewVehicle from "../Components/ViewVehicle";
 import EditVehicle from "../Components/EditVehicle";
+import AddVehicle from "../Components/AddVehicle";
 
 export default {
   /**
@@ -35,7 +39,7 @@ export default {
   /**
    * components
    */
-  components: {EditVehicle, ViewVehicle, MainLayout},
+  components: {AddVehicle, EditVehicle, ViewVehicle, MainLayout},
 
   /**
    * data
